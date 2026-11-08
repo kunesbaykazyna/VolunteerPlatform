@@ -1,0 +1,11 @@
+# Python
+volunteer_backend/venv/
+volunteer_backend/__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+.vscode/
+
+# OS
+.DS_Store
