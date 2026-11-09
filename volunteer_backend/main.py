@@ -134,3 +134,30 @@ def apply_for_project(project_id: int, request: ApplyRequest):
     finally:
         cursor.close()
         conn.close()
+
+@app.get("/api/users/{user_id}/applications")
+def get_user_applications(user_id: int):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        query = """
+            SELECT p.project_id, 
+                   p.title, 
+                   p.description, 
+                   p.city,
+                   p.start_datetime, 
+                   p.category,
+                   u.full_name as organizer_name
+            FROM registrations r
+            JOIN projects p ON r.project_id = p.project_id
+            JOIN users u ON p.organizer_id = u.user_id
+            WHERE r.user_id = %s;
+        """
+        cursor.execute(query, (user_id,))
+        applications = cursor.fetchall()
+        return applications
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
