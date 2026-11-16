@@ -4,10 +4,12 @@ A full-stack web application designed to connect volunteers with local social, e
 
 ## 🚀 Features
 
-* **User Authentication:** Secure registration and login system with role-based access control.
-* **Project Catalog:** Browse available volunteer projects with category filtering.
-* **Application System:** One-click application to projects.
-* **My Applications Dashboard:** Track successfully joined projects.
+* **Landing page:** Hero section, 3-step explanation and a public catalog of open projects (no login needed to browse).
+* **User Authentication:** Register as a volunteer or an organizer; sign in / sign out.
+* **Project Catalog:** Category filtering, spots left, date, time and location on every card.
+* **Registration with a note:** Volunteers register in a pop-up and can leave a short note.
+* **My registrations:** Volunteers see the status of each registration (Pending / Approved / Declined).
+* **Organizer dashboard:** Organizers publish new projects and approve or decline registrations.
 * **Data Integrity & Security:** Database-level constraints, unique application checks, and capacity enforcement.
 
 ## 🛠️ Tech Stack
@@ -63,6 +65,8 @@ Follow these steps to run the project on your local machine.
 
    *The backend will run on `http://localhost:8000`*
 
+   On start the backend adds the `note` column to `registrations` automatically (`ALTER TABLE ... IF NOT EXISTS`), so you do not need to change `init.sql`.
+
 ### 3. Frontend Setup
 
 1. Navigate to the `frontend` (or root) directory.
@@ -79,6 +83,10 @@ Follow these steps to run the project on your local machine.
    ```
 
    *The frontend will be available at `http://localhost:5173`*
+
+   If the backend runs on another address, copy `.env.example` to `.env` and change `VITE_API_URL`.
+
+   To try the organizer dashboard, sign in with `aigerim@example.com` / `hash_1`, or register a new account with the Organizer role.
 
 ---
 
